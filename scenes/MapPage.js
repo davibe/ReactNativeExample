@@ -58,7 +58,7 @@ const Page = connect(
             () => state.navigator.push({ title: 'foo' })
           }
           title="Tap me to load the next scene"
-          color="#841584"
+          color="#841584os"
           accessibilityLabel="Tap me to load the next scenen"
         ></Button>
       </View>

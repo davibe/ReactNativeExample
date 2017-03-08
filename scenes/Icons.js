@@ -36,8 +36,10 @@ const Item = connect(
       underlayColor="#999"
       onPress={() => {
         state.navigator.push({
-          destination: 'IconDetail',
-          iconName: props.value
+          scene: 'IconDetail',
+          props: {
+            iconName: props.value
+          }  
         })
       }}
     >

@@ -53,7 +53,10 @@ const Page = connect(
         <Button
           style={styleButton}
           onPress={
-            () => state.navigator.push({ destination: 'Icons' })
+            () => state.navigator.push({
+              scene: 'Icons',
+              props: {}
+            })
           }
           title="FontAwesome icons"
           color="#922"
@@ -63,7 +66,12 @@ const Page = connect(
         <Button
           style={styleButton}
           onPress={
-            () => state.navigator.push({ destination: 'IconDetail', iconName: 'bicycle' })
+            () => state.navigator.push({
+              scene: 'IconDetail',
+              props: {
+                iconName: 'bicycle'
+              }
+            })
           }
           title="Bike Icon"
           color="#922"
@@ -73,7 +81,10 @@ const Page = connect(
         <Button
           style={styleButton}
           onPress={
-            () => state.navigator.push({ destination: 'Map' })
+            () => state.navigator.push({
+              scene: 'Map',
+              props: {}
+            })
           }
           title="Map wip"
           color="#922"

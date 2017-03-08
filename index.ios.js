@@ -17,11 +17,11 @@ import {
 import { Provider, connect } from 'refnux'
 import storeGet from './store/storeGet'
 
-// pages
-import MapPage from './pages/MapPage'
-import Icons from './pages/Icons'
-import IconDetail from './pages/IconDetail'
-import Index from './pages/Index'
+// scenes
+import MapPage from './scenes/MapPage'
+import Icons from './scenes/Icons'
+import IconDetail from './scenes/IconDetail'
+import Index from './scenes/Index'
 
 // actions
 import navigatorSet from './store/navigatorSet'
@@ -30,21 +30,24 @@ import navigatorSet from './store/navigatorSet'
 const Navi = connect(
   (state, dispatch, props) =>
     <Navigator
-      initialRoute={{ destination: 'Index' }}
+      initialRoute={{ scene: 'Index' }}
       renderScene={(route, navigator) => {
         if (!state.navigator) {
           dispatch(navigatorSet(navigator))
         }
-        if (route.destination == 'Icons') {
+        if (route.scene == 'Icons') {
           return (<Icons />)
         }
-        if (route.destination == 'IconDetail') {
-          return (<IconDetail iconName={route.iconName} />)
+        if (route.scene == 'IconDetail') {
+          return (<IconDetail {...route.props} />)
         }
-        if (route.destination == 'Map') {
+        if (route.scene == 'Map') {
           return (<MapPage />)
         }
-        return (<Index />)
+        if (route.scene == 'Index') {
+          return (<Index />)
+        }
+        return (<Text>Scene not found</Text>)
       }}
     />
 )

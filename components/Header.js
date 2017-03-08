@@ -11,43 +11,37 @@ import {
   StatusBar
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-    
 
-const styleTouchable = {
-  position: 'absolute',
-  left: 0, top: 0, bottom: 0,
-  padding: 10,
-  paddingTop: 25,
-  // backgroundColor: 'green'
-}
-const styleWrapper = {
-  flex: 1,
-  flexDirection: 'row',
-  alignItems: 'center',
-}
-const styleText = {
-  color: '#ddd',
-  padding: 5,
-  textAlign: 'center',
-  fontSize: 18,
-  lineHeight: 18,
-}
-const Back = connect(
-  (state, dispatch) =>
-    <TouchableHighlight
-      underlayColor="transparent"  
-      style={styleTouchable}
+
+const BackButton = connect(
+  (state, dispatch, props) =>
+
+    <TouchableHighlight /* touchable hilight element */
+      underlayColor="transparent"
       onPress={() => { state.navigator.pop() }}
     >
-      <View
-        style={styleWrapper}
+      <View /* wrap icon and text in a unique touchable view */
+        style={{
+          flex: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}
       >
-        <Icon
+        <Icon /* the back icon */
           name="ios-arrow-back"
-          size={28}
-          color="#ddd" />
-        <Text
-          style={styleText}
+          style={{
+            fontSize: 28,
+            color: '#ddd'
+          }}
+        />
+        <Text /* the back text */
+          style={{
+            color: '#ddd',
+            padding: 5,
+            textAlign: 'center',
+            fontSize: 18,
+            lineHeight: 18,
+          }}
         >
           Back
         </Text>
@@ -55,28 +49,41 @@ const Back = connect(
     </TouchableHighlight>
 )
 
-const styleHeader = {
-  height: 60,
-  backgroundColor: '#922',
-}
-const styleHeaderTitle = {
-  color: 'white',
-  fontSize: 20,
-  paddingTop: 25,
-  padding: 10,
-  textAlign: 'center',
-  // backgroundColor: 'red'
-}
-const Header = ({ title, backHidden = false }) =>
-  <View style={styleHeader}>
-    <StatusBar
-      barStyle="light-content"
-    />
-    <Text style={styleHeaderTitle}>
-      {title}
-    </Text>
-    {backHidden ? null : (<Back />)}
-  </View>
 
+const Header = ({ title, backHidden = false }) =>
+  <View /* wrapper */
+    style={{
+      height: 60,
+      paddingTop: 20,
+      flex: 0,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      backgroundColor: '#922',
+    }}
+  >
+    <View /* left button */
+      style={{
+        width: 75,
+        padding: 10
+      }}
+    >
+      {backHidden ? null : (<BackButton />)}
+    </View>
+
+    <Text /* the title */
+      style={{
+        color: 'white',
+        fontSize: 20
+      }}
+    >{title}</Text>
+
+    <View /* right button */
+      style={{
+        width: 75,
+        padding: 10
+      }}
+    ></View>
+  </View>
 
 export default Header
