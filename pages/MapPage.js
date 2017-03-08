@@ -13,9 +13,11 @@ import {
   ScrollView,
 } from 'react-native';
 
-import Header from './Header'
-import Map from './Map'
-import StateDebug from './StateDebug'
+import Icon from 'react-native-fontawesome'
+
+import Header from './../components/Header'
+import Map from './../components/Map'
+import StateDebug from './../components/StateDebug'
 
 // actions
 import counterIncrement from '../store/counterIncrement'
@@ -40,7 +42,7 @@ const styleMap = {
   height: '40%'
 }
 
-const Scene1 = connect(
+const Page = connect(
   (state, dispatch) =>
 
     <View style={styleBackground}>
@@ -50,6 +52,16 @@ const Scene1 = connect(
       <Map style={styleMap}></Map>
 
       <View style={stylePanel}>
+        <Icon // http://fontawesome.io/icons/
+          style={{
+            fontSize: 30,
+            color: 'gray',
+            padding: 10
+          }}
+        >
+          tag
+        </Icon>
+
         <Button
           style={styleButton}
           onPress={
@@ -58,7 +70,7 @@ const Scene1 = connect(
           title="Tap me to load the next scene"
           color="#841584"
           accessibilityLabel="Tap me to load the next scenen"
-        />
+        >asddsa</Button>
       </View>
 
       <ScrollView>
@@ -70,4 +82,4 @@ const Scene1 = connect(
 
 
 
-export default Scene1
+export default Page

@@ -14,31 +14,43 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import {Provider} from 'refnux'
+import { Provider, connect } from 'refnux'
 
 import storeGet from './store/storeGet'
-import Scene1 from './components/Scene1'
+import MapPage from './pages/MapPage'
+import Icons from './pages/Icons'
+import IconDetail from './pages/IconDetail'
+import Index from './pages/Index'
 import navigatorSet from './store/navigatorSet'
 
-const store = storeGet()
-const dispatch = store.dispatch
 
-class ReactNativeExample extends Component {
-  render() {
-    return (
-      <Provider store={store} >
-        <Navigator
-          initialRoute={{ title: 'Awesome Scene', index: 0 }}
-          renderScene={(route, navigator) => {
-              dispatch(navigatorSet(navigator))
-              return (< Scene1 navigator= { navigator } />)
-            }
-          }
+const Navi = connect(
+  (state, dispatch, props) =>
+    <Navigator
+      initialRoute={{ destination: 'Index' }}
+      renderScene={(route, navigator) => {
+        if (!state.navigator) {
+          dispatch(navigatorSet(navigator))
+        }
+        if (route.destination == 'Icons') {
+          return (<Icons />)
+        }
+        if (route.destination == 'IconDetail') {
+          return (<IconDetail iconName={route.iconName} />)
+        }
+        if (route.destination == 'Map') {
+          return (<MapPage />)
+        }
+        return (<Index />)
+      }}
+    />
+)
 
-        />
-      </Provider>  
-    );
-  }
-}
+
+const ReactNativeExample = () =>
+  <Provider store={storeGet()}>
+    <Navi />
+  </Provider>
+
 
 AppRegistry.registerComponent('ReactNativeExample', () => ReactNativeExample);
