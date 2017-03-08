@@ -10,6 +10,7 @@
     "react": "~15.4.1",
     "react-native": "0.42.0",
     "react-native-fontawesome": "^4.7.0",
+    "react-native-vector-icons": "^4.0.0",
     "refnux": "^1.5.0"
   },
   "devDependencies": {
@@ -23,6 +24,8 @@
     "preset": "react-native"
   },
   "rnpm": {
-    "assets": ["./assets"]
+    "assets": [
+      "./assets"
+    ]
   }
 }

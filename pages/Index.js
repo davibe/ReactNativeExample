@@ -75,7 +75,7 @@ const Page = connect(
           onPress={
             () => state.navigator.push({ destination: 'Map' })
           }
-          title="Scene1"
+          title="Map wip"
           color="#922"
         />
       </View>

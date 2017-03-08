@@ -10,7 +10,50 @@ import {
   TouchableHighlight,
   StatusBar
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+    
 
+const styleTouchable = {
+  position: 'absolute',
+  left: 0, top: 0, bottom: 0,
+  padding: 10,
+  paddingTop: 25,
+  // backgroundColor: 'green'
+}
+const styleWrapper = {
+  flex: 1,
+  flexDirection: 'row',
+  alignItems: 'center',
+}
+const styleText = {
+  color: '#ddd',
+  padding: 5,
+  textAlign: 'center',
+  fontSize: 18,
+  lineHeight: 18,
+}
+const Back = connect(
+  (state, dispatch) =>
+    <TouchableHighlight
+      underlayColor="transparent"  
+      style={styleTouchable}
+      onPress={() => { state.navigator.pop() }}
+    >
+      <View
+        style={styleWrapper}
+      >
+        <Icon
+          name="ios-arrow-back"
+          size={28}
+          color="#ddd" />
+        <Text
+          style={styleText}
+        >
+          Back
+        </Text>
+      </View>
+    </TouchableHighlight>
+)
 
 const styleHeader = {
   height: 60,
@@ -24,28 +67,6 @@ const styleHeaderTitle = {
   textAlign: 'center',
   // backgroundColor: 'red'
 }
-const styleHeaderBack = {
-  position: 'absolute',
-  left: 0, top: 0, bottom: 0,
-  color: '#ddd',
-  fontSize: 18,
-  paddingTop: 25,
-  textAlign: 'center',
-  padding: 10,
-  // backgroundColor: 'green'
-}
-
-
-const Back = connect(
-  (state, dispatch) =>
-    <Text
-      style={styleHeaderBack}
-      onPress={() => { state.navigator.pop() }}
-    >
-      {'< Back'}
-    </Text>
-)
-
 const Header = ({ title, backHidden = false }) =>
   <View style={styleHeader}>
     <StatusBar
@@ -54,7 +75,7 @@ const Header = ({ title, backHidden = false }) =>
     <Text style={styleHeaderTitle}>
       {title}
     </Text>
-    { backHidden ? null : (<Back />) }
+    {backHidden ? null : (<Back />)}
   </View>
 
 

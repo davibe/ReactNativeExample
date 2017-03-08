@@ -47,21 +47,11 @@ const Page = connect(
 
     <View style={styleBackground}>
 
-      <Header title='Scene 1' />
+      <Header title='Map' />
 
       <Map style={styleMap}></Map>
 
       <View style={stylePanel}>
-        <Icon // http://fontawesome.io/icons/
-          style={{
-            fontSize: 30,
-            color: 'gray',
-            padding: 10
-          }}
-        >
-          tag
-        </Icon>
-
         <Button
           style={styleButton}
           onPress={
@@ -70,7 +60,7 @@ const Page = connect(
           title="Tap me to load the next scene"
           color="#841584"
           accessibilityLabel="Tap me to load the next scenen"
-        >asddsa</Button>
+        ></Button>
       </View>
 
       <ScrollView>
