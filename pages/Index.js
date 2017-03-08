@@ -47,7 +47,7 @@ const Page = connect(
 
     <View style={styleBackground}>
 
-      <Header title='Index' />
+      <Header title='Index' backHidden={true} />
 
       <View style={stylePanel}>
         <Button
@@ -56,7 +56,17 @@ const Page = connect(
             () => state.navigator.push({ destination: 'Icons' })
           }
           title="FontAwesome icons"
-          color="#841584"
+          color="#922"
+        />
+      </View>
+      <View style={stylePanel}>
+        <Button
+          style={styleButton}
+          onPress={
+            () => state.navigator.push({ destination: 'IconDetail', iconName: 'bicycle' })
+          }
+          title="Bike Icon"
+          color="#922"
         />
       </View>
       <View style={stylePanel}>
@@ -66,7 +76,7 @@ const Page = connect(
             () => state.navigator.push({ destination: 'Map' })
           }
           title="Scene1"
-          color="#841584"
+          color="#922"
         />
       </View>
 

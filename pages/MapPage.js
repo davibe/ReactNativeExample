@@ -15,9 +15,10 @@ import {
 
 import Icon from 'react-native-fontawesome'
 
-import Header from './../components/Header'
-import Map from './../components/Map'
-import StateDebug from './../components/StateDebug'
+// components
+import Header from '../components/Header'
+import Map from '../components/Map'
+import StateDebug from '../components/StateDebug'
 
 // actions
 import counterIncrement from '../store/counterIncrement'
@@ -41,7 +42,6 @@ const stylePanel = {
 const styleMap = {
   height: '40%'
 }
-
 const Page = connect(
   (state, dispatch) =>
 

@@ -37,7 +37,7 @@ const styleIcon = {
   textAlign: 'center',
   fontSize: 200,
   color: '#444',
-  padding: 10,
+  padding: 20,
 }
 const Page = ({ iconName }) =>
   <View style={styleBackground}>

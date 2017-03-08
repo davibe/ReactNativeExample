@@ -17,11 +17,18 @@ const filter = (key, v) => {
   return '__not_serializable__'
 }
 
+const styleText = {
+  fontFamily: 'Menlo',
+  fontSize: 12,
+  padding: 10
+}
 const StateDebug = connect(
   (state, dispatch) =>
-    <Text onPress={() => {
-      dispatch(counterIncrement)
-    }}>
+    <Text
+      style={styleText}
+      onPress={() => {
+        dispatch(counterIncrement)
+      }}>
       {JSON.stringify(state, filter, 2)}
     </Text>
 )

@@ -8,7 +8,8 @@ import {
   ScrollView,
   Alert,
   TouchableHighlight,
-  Text
+  Text,
+  ListView
 } from 'react-native';
 import Icon from 'react-native-fontawesome'
 import { Icons } from 'react-native-fontawesome'
@@ -51,67 +52,51 @@ const Item = connect(
 )
 
 
-const styleBackground = {
-  flex: 1,
-  backgroundColor: 'white'
-}
 const stylePanel = {
   backgroundColor: '#efefef',
-  borderTopWidth: .5,
-  borderTopColor: '#ccc',
-  borderBottomWidth: .5,
-  borderBottomColor: '#ccc',
   flex: 1,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
   flexWrap: 'wrap'
 }
+const Row = ({ iconNames }) =>
+  <View style={stylePanel}>
+    {
+      iconNames.map(
+        (value, index) => <Item value={value} key={index} />
+      )
+    }
+  </View>
+
+
+const styleBackground = {
+  flex: 1,
+  backgroundColor: 'white'
+}
+const getDataSource = () => {
+  const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+  const iconNames = Object.keys(Icons)
+  const rows = []
+  while (iconNames.length > 0) {
+    rows.push(iconNames.splice(0, 7))
+  }
+  const dataSource = ds.cloneWithRows(rows)
+  return dataSource
+}
+const dataSource = getDataSource()
 const Page = ({ iconNames = Object.keys(Icons) }) =>
   <View style={styleBackground}>
 
     <Header title='FontAwesome icons' />
 
-    <ScrollView>
-      <View style={stylePanel}>
-        {
-          iconNames.map(
-            (value, index) => <Item value={value} key={index} />
-          )
-        }
-      </View>
-    </ScrollView>
-
+    <ListView
+      dataSource={dataSource}
+      renderRow={
+        (iconNames) => <Row iconNames={iconNames} />
+      }
+    />
   </View>
 
 
-class IncrementalRendering extends React.Component {
-  constructor(props, context) {
-    super(props, context)
-    const iconNames = Object.keys(Icons)
-    this.state = {
-      iconNames: []
-    }
-  }
-  render() {
-    return (<Page iconNames={this.state.iconNames} />)
-  }
-  componentDidMount() {
-    const iconNames = Object.keys(Icons)
-    const incr = []
-    const interval = setInterval(() => {
-      if (iconNames.length == 0) {
-        console.log('stop')
-        clearInterval(interval)
-        return
-      }
-      this.setState({
-        iconNames: this.state.iconNames.concat(iconNames.splice(0, 100))
-      })
-    }, 200)
-  }
-}
-
-
-export { IncrementalRendering }
 export default Page

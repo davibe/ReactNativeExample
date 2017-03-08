@@ -46,15 +46,15 @@ const Back = connect(
     </Text>
 )
 
-const Header = (props) =>
+const Header = ({ title, backHidden = false }) =>
   <View style={styleHeader}>
     <StatusBar
       barStyle="light-content"
-    /> 
+    />
     <Text style={styleHeaderTitle}>
-      {props.title}
+      {title}
     </Text>
-    <Back />
+    { backHidden ? null : (<Back />) }
   </View>
 
 

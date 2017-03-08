@@ -15,12 +15,15 @@ import {
 } from 'react-native';
 
 import { Provider, connect } from 'refnux'
-
 import storeGet from './store/storeGet'
+
+// pages
 import MapPage from './pages/MapPage'
 import Icons from './pages/Icons'
 import IconDetail from './pages/IconDetail'
 import Index from './pages/Index'
+
+// actions
 import navigatorSet from './store/navigatorSet'
 
 
